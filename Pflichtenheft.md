@@ -17,14 +17,15 @@ Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
  
  Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann. Die Vokabeln können eingegeben werden, geprüft werden und die erreichten Punkte werden ausgewertet.
  
- ## Projektstrukturplan
- 
+## Projektstrukturplan
+
+![](/Users/madschi/Desktop/Bildschirmfoto 2020-01-23 um 13.05.44.png) 
  
 ##4. Aufgabenstellung
  Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
  
 ##Funktionale Anforderungen
-  ### Anwendungsfalldiagramm
+###Anwendungsfalldiagramm
  ![anwendungsfalldiag](https://i.imgur.com/Qbz1Ikq.jpg)
  
  - Hinzufügen der Vokabeln
@@ -40,7 +41,6 @@ Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
 ## Zielsetzung
 Als Ziel dieses Programms soll vorallem die Effizienz des Lernens der Schüler im Vordergrund stehen. 
 Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erzielen. 
-
 
 
 
