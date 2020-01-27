@@ -4,7 +4,7 @@ Version: 1.0
 
 Version-Date: 20.01.2020
 
-Author: Isabel Turner, Marah Steigersdorfer
+Author: Marah Steigersdorfer, Isabel Turner
 
 ## 1. Beschreibung der Ausgangssituation
 Ein Vokabellernprogramm soll erstellt werden, um Schülern das Lernen der Vokabeln zu erleichtern.
@@ -18,13 +18,14 @@ Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
  Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann. Die Vokabeln können eingegeben werden, geprüft werden und die erreichten Punkte werden ausgewertet.
  
 ## Projektstrukturplan
-![](/Users/madschi/Desktop/Strukturplan.png) 
+![Strukturplan](https://i.imgur.com/0dDuWJA.png)
+
  
-##4. Aufgabenstellung
+## 4. Aufgabenstellung
  Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
  
-##Funktionale Anforderungen
-###Anwendungsfalldiagramm
+## Funktionale Anforderungen
+### Anwendungsfalldiagramm
  ![anwendungsfalldiag](https://i.imgur.com/Qbz1Ikq.jpg)
  
  - Hinzufügen der Vokabeln
@@ -32,11 +33,10 @@ Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
  - Löschen der Vokabeln
  - Auswertung der Überprüfung
  
-##Nicht-funktionale Anforderungen
+## Nicht-funktionale Anforderungen
  keine?
  
  
-
 ## Zielsetzung
 Als Ziel dieses Programms soll vorallem die Effizienz des Lernens der Schüler im Vordergrund stehen. 
 Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erzielen. 
