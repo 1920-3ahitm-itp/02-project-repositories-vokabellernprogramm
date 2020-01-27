@@ -18,8 +18,7 @@ Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
  Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann. Die Vokabeln können eingegeben werden, geprüft werden und die erreichten Punkte werden ausgewertet.
  
 ## Projektstrukturplan
-
-![](/Users/madschi/Desktop/Bildschirmfoto 2020-01-23 um 13.05.44.png) 
+![](/Users/madschi/Desktop/Strukturplan.png) 
  
 ##4. Aufgabenstellung
  Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
