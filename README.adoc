@@ -16,7 +16,7 @@ Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
 [link=https://i.imgur.com/PXAt8kT.jpg]
 image::https://i.imgur.com/PXAt8kT.jpg[Klassendiagramm,500,500]
 
- Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann.
+Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann.
 Die Vokabeln können eingegeben werden, geprüft werden und die erreichten Punkte werden ausgewertet.
 
 ## Projektstrukturplan
@@ -25,7 +25,8 @@ image::https://i.imgur.com/0dDuWJA.png[Projektstrukturplan,700,400]
 
 
 ## 4. Aufgabenstellung
- Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
+Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im
+Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
 
 ## Funktionale Anforderungen
 ### Anwendungsfalldiagramm
@@ -38,7 +39,7 @@ image::https://i.imgur.com/Qbz1Ikq.jpg[Anwendungsfalldiagramm,700,400]
 - Auswertung der Überprüfung
 
 ## Nicht-funktionale Anforderungen
- keine?
+keine?
 
 
 ## Zielsetzung
