@@ -1,42 +1,23 @@
 package controller;
 
+import model.Word;
 import org.apache.derby.jdbc.ClientDataSource;
 
 import javax.sql.DataSource;
 import java.sql.*;
 
-public class WordRepository implements Repository {
-    static final String DATABASE = "db";
-    static final String USERNAME = "app";
-    static final String PASSWORD = "app";
-    public static final String URL = "jdbc:derby://localhost:1527/" + DATABASE + ";create=true";
-    public static final String TABLE_NAME = "word";
+public class WordRepository  {
 
-    private static WordRepository instance;
+    private DataSource dataSource = Database.getDataSource();
 
-    public DataSource getDataSource(){
-        ClientDataSource dataSource = new ClientDataSource();
-        dataSource.setDatabaseName(DATABASE);
-        dataSource.setUser(USERNAME);
-        dataSource.setPassword(PASSWORD);
-        return dataSource;
-    }
 
-    public static synchronized WordRepository getInstance() {
-        if (instance == null){
-            instance = new WordRepository();
-        }
-        return instance;
-    }
 
-    @Override
     public Word save(Word newWord) {
         return insert(newWord);
     }
 
-    @Override
     public void delete(String englishWord) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        try (Connection connection = dataSource.getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 statement.executeUpdate("DELETE FROM WORD WHERE ENGLISHWORD = " + englishWord);
 
@@ -50,10 +31,9 @@ public class WordRepository implements Repository {
 
     private Word insert(Word wordToSave) {
 
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        try (Connection conn = dataSource.getConnection();
                 PreparedStatement stmnt = conn.prepareStatement("INSERT INTO APP.PERSON (germanWord, englishWord) " +
-                        "values (?, ?)", Statement.RETURN_GENERATED_KEYS))
-        {
+                        "values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             stmnt.setString(1, wordToSave.getGermanWord());
             stmnt.setString(2, wordToSave.getEnglishWord());
 
