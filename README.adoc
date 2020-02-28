@@ -11,7 +11,7 @@ Isabel Turner, Marah <mail@mail-server>
 :imagesdir: images
 :sourcedir-code: src/main/java
 :sourcedir-test: src/test/java
-:toc:
+:toc: left
 
 ++++
 <link rel="stylesheet"  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,9 +24,9 @@ Version Notes: {revmark} +
 Author: {Author} {email}
 
 
-Author: Marah Steigersdorfer, Isabel Turner
-
 == CLD
+
+image:CLD.png[]
 
 [plantuml,CLD,png]
 ----
