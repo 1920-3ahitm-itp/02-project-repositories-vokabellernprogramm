@@ -1,15 +1,11 @@
+package controller;
+
 import org.apache.derby.jdbc.ClientDataSource;
 
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
 
-public class WordRepository implements Repository{
+public class WordRepository implements Repository {
     static final String DATABASE = "db";
     static final String USERNAME = "app";
     static final String PASSWORD = "app";
@@ -100,8 +96,8 @@ public class WordRepository implements Repository{
         }
     }
 
-   /* private List<Word> readCsv(String fileName, int numberOfLines) {
-        List<Word> words = new LinkedList<>();
+   /* private List<model.Word> readCsv(String fileName, int numberOfLines) {
+        List<model.Word> words = new LinkedList<>();
 
         List<String> lines = null;
         try {
@@ -112,7 +108,7 @@ public class WordRepository implements Repository{
                     .limit(numberOfLines)
                     .peek(System.out::println)
                     .map(line -> line.split(";"))
-                    .map(elements -> new Word(elements[0], elements[1]))
+                    .map(elements -> new model.Word(elements[0], elements[1]))
                     //.distinct()
                     .forEach(words::add);
         } catch (IOException e) {
