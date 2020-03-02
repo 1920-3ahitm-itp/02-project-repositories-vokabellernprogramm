@@ -30,12 +30,12 @@ class WordRepositoryTest {
 //        repository.createTable();
     }
 
-   /* @Test
+    @Test
     void createTable() {
         repository = new WordRepository();
         repository.createTable();
 
-    }*/
+    }
 
 
    @Test
@@ -50,20 +50,14 @@ class WordRepositoryTest {
 
    @Test
    void test030_deleteWord(){
+       repository = new WordRepository();
+       Word word01 = new Word("Hund", "dog");
+       repository.save(word01);
+       repository.delete(word01.getEnglishWord());
 
+       assertThat(repository).isNull();
    }
 
-   @Test
-   void test070_insertRecord() {
-       Word word1 = new Word("Katze", "cat");
-
-       repository.save(word1);
-
-       Table wordTable = new Table(dataSource, TABLE_NAME);
-       output(wordTable).toConsole();
-       assertThat(wordTable).isNotNull();
-
-   }
    @Test
    void test080_saveTwoWords() {
        Word word01 = new Word("Hund", "dog");
@@ -78,7 +72,6 @@ class WordRepositoryTest {
        output(personTable).toConsole();
        org.assertj.db.api.Assertions.assertThat(personTable).hasNumberOfRows(2);
    }
-
 
    @Test
    void test090_dropTable() {

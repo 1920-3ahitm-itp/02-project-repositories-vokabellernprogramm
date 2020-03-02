@@ -11,7 +11,6 @@ public class WordRepository  {
     private DataSource dataSource = Database.getDataSource();
 
 
-
     public Word save(Word newWord) {
         return insert(newWord);
     }
@@ -40,7 +39,7 @@ public class WordRepository  {
     public void delete(String englishWord) {
         try (Connection connection = dataSource.getConnection()) {
             try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate("DELETE FROM WORD WHERE ENGLISH_WORD = " + englishWord);
+                statement.executeUpdate("DELETE FROM WORD WHERE ENGLISH_WORD =" + englishWord);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -53,7 +52,7 @@ public class WordRepository  {
     private Word insert(Word wordToSave) {
 
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO APP.WORD (GERMAN_WORD, ENGLISH_WORD) " +
+                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO WORD (GERMAN_WORD, ENGLISH_WORD) " +
                         "values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             stmnt.setString(1, wordToSave.getGermanWord());
             stmnt.setString(2, wordToSave.getEnglishWord());
@@ -77,17 +76,15 @@ public class WordRepository  {
         return wordToSave;
     }
 
-
-
     public void dropTable() {
         Database db = new Database();
         try (Connection connection = db.getDataSource().getConnection()) {
 
-            String sql = "DROP TABLE PERSON";
+            String sql = "DROP TABLE WORD";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.execute();
-            System.out.println("Dropped table PERSON.");
+            System.out.println("Dropped table WORD.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -133,6 +130,5 @@ public class WordRepository  {
         }
         return words;
     }*/
-
 
 }
