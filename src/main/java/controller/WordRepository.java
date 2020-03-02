@@ -11,6 +11,7 @@ public class WordRepository  {
     private DataSource dataSource = Database.getDataSource();
 
 
+
     public Word save(Word newWord) {
         return insert(newWord);
     }
@@ -18,7 +19,7 @@ public class WordRepository  {
 
     public void createTable() {
         Database db = new Database();
-        try (Connection connection = db.getDataSource().getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {
 
             String sql = "CREATE TABLE WORD(" +
                     "id INT GENERATED ALWAYS AS IDENTITY " +
@@ -78,7 +79,7 @@ public class WordRepository  {
 
     public void dropTable() {
         Database db = new Database();
-        try (Connection connection = db.getDataSource().getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {
 
             String sql = "DROP TABLE WORD";
 
@@ -92,7 +93,7 @@ public class WordRepository  {
 
     public boolean tableExists() {
         Database db = new Database();
-        try (Connection connection = db.getDataSource().getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {
 
             String sql = "SELECT * FROM SYS.SYSTABLES WHERE TABLENAME = 'PERSON'";
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -108,8 +109,6 @@ public class WordRepository  {
         }
         return false;
     }
-
-
    /* private List<model.Word> readCsv(String fileName, int numberOfLines) {
         List<model.Word> words = new LinkedList<>();
 

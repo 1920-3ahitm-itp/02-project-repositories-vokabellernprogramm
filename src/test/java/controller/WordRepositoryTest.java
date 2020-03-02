@@ -47,16 +47,15 @@ class WordRepositoryTest {
        assertThat(repository).isNotNull();
    }
 
-
+/*
    @Test
    void test030_deleteWord(){
-       repository = new WordRepository();
        Word word01 = new Word("Hund", "dog");
        repository.save(word01);
-       repository.delete(word01.getEnglishWord());
+       repository.delete(word01.getGermanWord());
 
        assertThat(repository).isNull();
-   }
+   }*/
 
    @Test
    void test080_saveTwoWords() {
@@ -68,9 +67,9 @@ class WordRepositoryTest {
        personRepository.save(word01);
        personRepository.save(word02);
 
-       Table personTable = new Table(dataSource, TABLE_NAME);
-       output(personTable).toConsole();
-       org.assertj.db.api.Assertions.assertThat(personTable).hasNumberOfRows(2);
+       Table wordTable = new Table(dataSource, TABLE_NAME);
+       output(wordTable).toConsole();
+       org.assertj.db.api.Assertions.assertThat(wordTable).hasNumberOfRows(2);
    }
 
    @Test
