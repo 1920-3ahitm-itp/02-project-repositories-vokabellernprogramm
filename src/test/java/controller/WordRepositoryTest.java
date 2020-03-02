@@ -74,8 +74,11 @@ class WordRepositoryTest {
 
    @Test
    void test090_dropTable() {
+
+       // act
        repository.dropTable();
 
+       // assert
        assertThat(repository.tableExists() == false);
    }
 }
