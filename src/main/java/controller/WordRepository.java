@@ -16,10 +16,31 @@ public class WordRepository  {
         return insert(newWord);
     }
 
+
+    public void createTable() {
+        Database db = new Database();
+        try (Connection connection = db.getDataSource().getConnection()) {
+
+            String sql = "CREATE TABLE WORD(" +
+                    "id INT GENERATED ALWAYS AS IDENTITY " +
+                    "CONSTRAINT pk_ PRIMARY KEY, " +
+                    "GERMAN_WORD VARCHAR(100)," +
+                    "ENGLISH_WORD VARCHAR(100)" +
+                    ")";
+
+            System.out.println(sql);
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void delete(String englishWord) {
         try (Connection connection = dataSource.getConnection()) {
             try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate("DELETE FROM WORD WHERE ENGLISHWORD = " + englishWord);
+                statement.executeUpdate("DELETE FROM WORD WHERE ENGLISH_WORD = " + englishWord);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -32,7 +53,7 @@ public class WordRepository  {
     private Word insert(Word wordToSave) {
 
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO APP.PERSON (germanWord, englishWord) " +
+                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO APP.WORD (GERMAN_WORD, ENGLISH_WORD) " +
                         "values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             stmnt.setString(1, wordToSave.getGermanWord());
             stmnt.setString(2, wordToSave.getEnglishWord());
@@ -56,25 +77,41 @@ public class WordRepository  {
         return wordToSave;
     }
 
-    public void createTable() {
+
+
+    public void dropTable() {
         Database db = new Database();
         try (Connection connection = db.getDataSource().getConnection()) {
 
-            String sql = "CREATE TABLE WORD(" +
-                    "id INT GENERATED ALWAYS AS IDENTITY " +
-                    "CONSTRAINT pk_ PRIMARY KEY, " +
-                    "GERMAN_WORD VARCHAR(100)," +
-                    "ENGLISH_WORD VARCHAR(100)" +
-                    ")";
+            String sql = "DROP TABLE PERSON";
 
-            System.out.println(sql);
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.execute();
-
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.execute();
+            System.out.println("Dropped table PERSON.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public boolean tableExists() {
+        Database db = new Database();
+        try (Connection connection = db.getDataSource().getConnection()) {
+
+            String sql = "SELECT * FROM SYS.SYSTABLES WHERE TABLENAME = 'PERSON'";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            ResultSet result = pstmt.executeQuery();
+
+            if (result.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
    /* private List<model.Word> readCsv(String fileName, int numberOfLines) {
         List<model.Word> words = new LinkedList<>();
