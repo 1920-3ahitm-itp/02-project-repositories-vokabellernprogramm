@@ -5,12 +5,12 @@ import org.apache.derby.jdbc.ClientDataSource;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WordRepository  {
 
     private DataSource dataSource = Database.getDataSource();
-
-
 
     public Word save(Word newWord) {
         return insert(newWord);
@@ -95,7 +95,7 @@ public class WordRepository  {
         Database db = new Database();
         try (Connection connection = dataSource.getConnection()) {
 
-            String sql = "SELECT * FROM SYS.SYSTABLES WHERE TABLENAME = 'PERSON'";
+            String sql = "SELECT * FROM SYS.SYSTABLES WHERE TABLENAME = 'WORD'";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet result = pstmt.executeQuery();
 
@@ -129,5 +129,27 @@ public class WordRepository  {
         }
         return words;
     }*/
+
+    public List<Word> getAllWords() {
+        List<Word> words = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection()) {
+
+            String sql = "SELECT ID, GERMAN_WORD, ENGLISH_WORD FROM PERSON";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                int id = result.getInt("ID");
+                String germanWord = result.getString("GERMAN_WORD");
+                String englishWord = result.getString("ENGLISH_WORD");
+                words.add(new Word(germanWord, englishWord));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return words;
+    }
 
 }

@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.db.output.Outputs.output;
 
@@ -18,20 +21,53 @@ public class WordRepositoryTest2 {
 
 
     @Test
-    void test020_insertWord(){
+    void test010_insertWord(){
+        repository.dropTable();
 
         // arrange
-        Word word01 = new Word("Hund", "dog");
+        Word word01 = new Word("Meerschweinchen", "guineapig");
+        Word word02 = new Word("Schildkröte", "turtle");
 
         // act
         repository.createTable();
         repository.save(word01);
+        repository.save(word02);
 
         // assert
-        Table table = new Table(dataSource, "word");
-        output(table).toConsole();
+        Table wordTable = new Table(dataSource, TABLE_NAME);
+        output(wordTable).toConsole();
+        org.assertj.db.api.Assertions.assertThat(wordTable).hasNumberOfRows(2);
+    }
 
-        //assertThat(repository).isNotNull();
+
+    @Test
+    void test020_(){
+
+        Word word01 = new Word("Meerschweinchen", "guineapig");
+
+        repository.createTable();
+
+        List<Word> words = repository.getAllWords();
+
+        if (words.size() == 0){
+            repository.save(word01);
+        }else {
+            for (int i = 0; i < words.size(); i++) {
+                if (words.get(i).getGermanWord().matches(word01.getGermanWord())){
+                    System.out.println("Word already exists.");
+                }else {
+                    repository.save(word01);
+                }
+            }
+        }
+
+        Table wordTable = new Table(dataSource, TABLE_NAME);
+        output(wordTable).toConsole();
+
+        org.assertj.db.api.Assertions.assertThat(wordTable).hasNumberOfRows(2);
+
+
+
     }
 
 }

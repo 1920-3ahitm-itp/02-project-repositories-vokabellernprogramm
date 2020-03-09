@@ -62,10 +62,10 @@ class WordRepositoryTest {
        Word word01 = new Word("Hund", "dog");
        Word word02 = new Word("Katze", "cat");
 
-       WordRepository personRepository = new WordRepository();
-       personRepository.createTable();
-       personRepository.save(word01);
-       personRepository.save(word02);
+       WordRepository wordRepository = new WordRepository();
+       wordRepository.createTable();
+       wordRepository.save(word01);
+       wordRepository.save(word02);
 
        Table wordTable = new Table(dataSource, TABLE_NAME);
        output(wordTable).toConsole();

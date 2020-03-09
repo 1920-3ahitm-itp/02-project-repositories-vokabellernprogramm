@@ -2,8 +2,8 @@ package model;
 
 public class Word {
 
-    String germanWord = "";
-    String englishWord = "";
+    private String germanWord = "";
+    private String englishWord = "";
 
     public Word() {
     }
