@@ -135,7 +135,7 @@ public class WordRepository  {
 
         try (Connection connection = dataSource.getConnection()) {
 
-            String sql = "SELECT ID, GERMAN_WORD, ENGLISH_WORD FROM PERSON";
+            String sql = "SELECT ID, GERMAN_WORD, ENGLISH_WORD FROM WORD";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
 

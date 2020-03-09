@@ -40,34 +40,29 @@ public class WordRepositoryTest2 {
     }
 
 
-    @Test
+  /*  @Test
     void test020_(){
 
         Word word01 = new Word("Meerschweinchen", "guineapig");
 
         repository.createTable();
+        repository.save(word01);
 
         List<Word> words = repository.getAllWords();
 
-        if (words.size() == 0){
-            repository.save(word01);
-        }else {
             for (int i = 0; i < words.size(); i++) {
-                if (words.get(i).getGermanWord().matches(word01.getGermanWord())){
+                if (words.get(i).getGermanWord().equals(word01.getGermanWord())){
                     System.out.println("Word already exists.");
                 }else {
                     repository.save(word01);
                 }
             }
-        }
 
         Table wordTable = new Table(dataSource, TABLE_NAME);
         output(wordTable).toConsole();
 
         org.assertj.db.api.Assertions.assertThat(wordTable).hasNumberOfRows(2);
 
-
-
-    }
+    }*/
 
 }
