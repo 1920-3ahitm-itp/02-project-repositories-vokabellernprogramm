@@ -38,6 +38,7 @@ class WordRepositoryTest {
     }
 
 
+/*
    @Test
    void test020_insertWord(){
        Word word01 = new Word("Hund", "dog");
@@ -46,6 +47,7 @@ class WordRepositoryTest {
 
        assertThat(repository).isNotNull();
    }
+*/
 
 /*
    @Test
