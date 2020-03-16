@@ -1,4 +1,4 @@
-//package at.htl.exercise.view;
+package view;//package at.htl.exercise.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
