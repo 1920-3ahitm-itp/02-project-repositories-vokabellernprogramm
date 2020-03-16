@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import model.Word;
 
 import javax.swing.table.TableColumn;
@@ -11,6 +12,8 @@ import java.util.ResourceBundle;
 
 public class WordController implements Initializable {
 
+    // make variables
+
    // @FXML
    // private TableView<Word> tableView;
     // @FXML
@@ -18,6 +21,45 @@ public class WordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // configure tableView
+
+
+
+        //read Words from DB
+
+
+
+        // set EventListeners
+
+
+
+        // make Column editable
+
+
+    }
+
+    private void addWord(){
+
+    }
+
+    private void removeWord(){
+
+    }
+
+    private void validateTextFields(){
+
+    }
+
+    private void showInvalidInputAlert(String headerText, String contentText){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Invalid Input");
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+    public void saveWord(){
 
     }
 }
