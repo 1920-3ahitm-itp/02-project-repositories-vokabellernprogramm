@@ -19,9 +19,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("contacts"));
+        scene = new Scene(loadFXML("words"));
         stage.setScene(scene);
-        stage.setTitle("Address Book");
+        stage.setTitle("VocabularyProgramm");
         stage.show();
     }
 
