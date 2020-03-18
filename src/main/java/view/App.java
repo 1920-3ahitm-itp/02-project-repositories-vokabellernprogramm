@@ -1,4 +1,4 @@
-package view;//package at.htl.exercise.view;
+package view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,16 +19,16 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("words"));
+        scene = new Scene(loadFXML("vocabulary"), 640, 480);
         stage.setScene(scene);
-        stage.setTitle("VocabularyProgramm");
+        stage.setTitle("Vocabulary Programm");
         stage.show();
     }
 
     @Override
     public void stop() throws Exception{
         super.stop();                               // super --> Elternklasse
-        //controller.saveWord();
+        controller.saveWord();
     }
 
     static void setRoot(String fxml) throws IOException {

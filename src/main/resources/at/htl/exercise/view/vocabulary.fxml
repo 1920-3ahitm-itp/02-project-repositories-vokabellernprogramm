@@ -22,8 +22,8 @@
             </Label>
             <TableView fx:id="tableView" prefHeight="285.0" prefWidth="580.0">
               <columns>
-                <TableColumn fx:id="addedWord" prefWidth="300.80001866817474" text="German" />
-                <TableColumn fx:id="descriptionColumn" prefWidth="280.0000305175781" text="English" />
+                <TableColumn fx:id="germanColumn" prefWidth="300.80001866817474" text="German" />
+                <TableColumn fx:id="englishColumn" prefWidth="280.0000305175781" text="English" />
               </columns>
             </TableView>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -38,7 +38,7 @@
                         <Insets top="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="switchToProducts" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="Switch for checking">
+                  <Button fx:id="switchButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="Switch for checking">
                      <HBox.margin>
                         <Insets left="260.0" top="50.0" />
                      </HBox.margin>

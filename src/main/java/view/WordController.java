@@ -3,10 +3,9 @@ package view;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import model.Word;
-
-import javax.swing.table.TableColumn;
-import javax.swing.text.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -14,10 +13,19 @@ public class WordController implements Initializable {
 
     // make variables
 
-   // @FXML
-   // private TableView<Word> tableView;
-    // @FXML
+   //@FXML
+   //private TableView<Word> tableView;
+    //@FXML
     //private TableColumn<Word, String> germanWordColumn;
+    @FXML
+    private TextField englishWord;
+    @FXML
+    private TextField germanWord;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button switchButton;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
