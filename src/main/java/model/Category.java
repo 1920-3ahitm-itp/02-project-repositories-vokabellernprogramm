@@ -9,7 +9,6 @@ public class Category {
     private String name;
     private List<Word> words = new ArrayList<>();
 
-
     public Category() {
     }
 

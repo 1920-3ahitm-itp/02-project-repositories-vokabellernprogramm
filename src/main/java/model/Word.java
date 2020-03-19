@@ -4,6 +4,7 @@ public class Word {
 
     private String germanWord = "";
     private String englishWord = "";
+    //private Category category = new Category();
 
     public Word() {
     }
