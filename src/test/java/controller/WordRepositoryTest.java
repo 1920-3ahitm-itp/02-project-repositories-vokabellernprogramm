@@ -1,6 +1,8 @@
 package controller;
 
-import model.Word;
+import at.htl.project.controller.Database;
+import at.htl.project.controller.WordRepository;
+import at.htl.project.model.Word;
 import org.apache.derby.jdbc.ClientDataSource;
 import org.assertj.core.api.Assertions;
 import org.assertj.db.type.Table;
