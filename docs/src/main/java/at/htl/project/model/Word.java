@@ -1,4 +1,4 @@
-package model;
+package at.htl.project.model;
 
 public class Word {
 

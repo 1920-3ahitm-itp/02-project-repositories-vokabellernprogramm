@@ -1,4 +1,6 @@
-package model;
+package at.htl.project.model;
+
+import at.htl.project.model.Word;
 
 import java.util.ArrayList;
 import java.util.List;

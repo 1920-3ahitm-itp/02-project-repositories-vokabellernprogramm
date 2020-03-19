@@ -1,7 +1,6 @@
-package controller;
+package at.htl.project.controller;
 
-import model.Word;
-import org.apache.derby.jdbc.ClientDataSource;
+import at.htl.project.model.Word;
 
 import javax.sql.DataSource;
 import java.sql.*;

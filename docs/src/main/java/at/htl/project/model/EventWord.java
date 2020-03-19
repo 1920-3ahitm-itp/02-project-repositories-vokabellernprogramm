@@ -1,4 +1,4 @@
-package model;
+package at.htl.project.model;
 
 import java.util.ArrayList;
 import java.util.Date;

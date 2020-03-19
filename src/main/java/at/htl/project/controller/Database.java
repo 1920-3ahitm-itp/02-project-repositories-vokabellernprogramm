@@ -1,4 +1,4 @@
-package controller;
+package at.htl.project.controller;
 
 import org.apache.derby.jdbc.ClientDataSource;
 
@@ -15,7 +15,7 @@ public class Database {
     public static final String URL = "jdbc:derby://localhost:1527/" + DATABASE + ";create=true";
 
 
-    static DataSource getDataSource(){
+    public static DataSource getDataSource(){
         ClientDataSource dataSource = new ClientDataSource();
         dataSource.setDatabaseName(DATABASE);
         dataSource.setUser(USERNAME);
