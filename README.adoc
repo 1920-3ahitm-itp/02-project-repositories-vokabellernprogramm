@@ -1,107 +1,19 @@
-= Pflichtenheft
-// Metadata
-Isabel Turner, Marah <mail@mail-server>
-1.0, 28.02.2020: Some notes
+= Vokabellernprogramm
 
-// Settings
-:source-highlighter: coderay
-:icons: font
-//:sectnums:    // Nummerierung der Überschriften / section numbering
-// Refs:
-:imagesdir: images
-:sourcedir-code: src/main/java
-:sourcedir-test: src/test/java
-:toc: left
-
-++++
-<link rel="stylesheet"  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-++++
+== Webseite
 
 
-Version: {revnumber} +
-Version Date: {revdate} +
-Version Notes: {revmark} +
-Author: {Author} {email}
-
-
-== CLD
-
-image:CLD.png[]
-
-[plantuml,CLD,png]
-----
-@startuml
-class Word {
-  category: Category
-}
-class Event
-class EventWord
-class Category
-
-Word "*" -up-> "1" Category
-Word "*" -right- "*" Event
-(Word, Event) . EventWord
-@enduml
-----
-
-
-== 1. Beschreibung der Ausgangssituation
+== 1. Beschreibung
 Ein Vokabellernprogramm soll erstellt werden, um Schülern das Lernen der Vokabeln zu erleichtern.
 Die Schüler können selbst die Vokabeln eintragen, welche hinzufügen, bearbeiten oder löschen.
 Sie können sich auch selbstständig prüfen lassen, um zu schauen, ob sie genug gelernt haben.
 Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
-
-== 2. Ist-Zustand
-[link=https://i.imgur.com/PXAt8kT.jpg]
-image::https://i.imgur.com/PXAt8kT.jpg[Klassendiagramm,500,500]
-
-Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann.
-Die Vokabeln können eingegeben werden, geprüft werden und die erreichten Punkte werden ausgewertet.
-
-== Projektstrukturplan
-[link=https://i.imgur.com/0dDuWJA.png]
-image::https://i.imgur.com/0dDuWJA.png[Projektstrukturplan,700,400]
-
-
-== 4. Aufgabenstellung
-Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im
-Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
-
-== Funktionale Anforderungen
-### Anwendungsfalldiagramm
-[link=https://i.imgur.com/Qbz1Ikq.jpg]
-image::https://i.imgur.com/Qbz1Ikq.jpg[Anwendungsfalldiagramm,700,400]
-
-- Hinzufügen der Vokabeln
-- Bearbeiten der Vokabeln
-- Löschen der Vokabeln
-- Auswertung der Überprüfung
-
-== Nicht-funktionale Anforderungen
-keine?
 
 
 == Zielsetzung
 Als Ziel dieses Programms soll vorallem die Effizienz des Lernens der Schüler im Vordergrund stehen.
 Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erzielen.
 
-== GANTT - Diagramm
-[plantuml, gantt, png]
-----
-@startgantt
-[Prototype design] lasts 7 days
-[Code prototype] lasts 7 days
-[Write tests] lasts 7 days
-[Code prototype] starts at [Prototype design]'s end
-[Write tests] starts at [Code prototype]'s start
-[design FXML GUI] lasts 7 days
-[design FXML GUI] starts at [Write tests]'s end
-[make for user editable] lasts 7 days
-[make for user editable] starts at [design FXML GUI]'s end
-[add some expansions] lasts 7 days
-[add some expansions] starts at [make for user editable]'s end
-[debugging] starts at [add some expansions]'s end
-@endgantt
-----
+
 
 
