@@ -75,7 +75,10 @@ image::https://i.imgur.com/Qbz1Ikq.jpg[Anwendungsfalldiagramm,700,400]
 - Auswertung der Überprüfung
 
 == Nicht-funktionale Anforderungen
-keine?
+- Flexibilität
+- Kompatibilität
+- robust?
+
 
 
 == Zielsetzung
