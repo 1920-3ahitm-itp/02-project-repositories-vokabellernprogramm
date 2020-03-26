@@ -1,6 +1,6 @@
 package at.htl.project.model;
 
-public enum EVENT {
+public enum EventType {
     SCHULARBEIT,
     TEST,
     MITARBEITSKONTROLLE,

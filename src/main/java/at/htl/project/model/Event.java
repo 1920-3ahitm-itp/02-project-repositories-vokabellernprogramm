@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EventWord {
+public class Event {
 
     //eventType: Art des Events
-    EVENT eventType;
+    EventType eventType;
 
     //date: Datum wo dieses Event stattfindet zur Unterscheidung
     Date date;
@@ -15,18 +15,18 @@ public class EventWord {
     //words: Die Wörter des Events
     List<Word> words = new ArrayList<>();
 
-    public EventWord(EVENT eventType, Date date, List<Word> words) {
+    public Event(EventType eventType, Date date, List<Word> words) {
         this.eventType = eventType;
         this.date = date;
         this.words = words;
     }
 
     //Getter und Setter
-    public EVENT getEventType() {
+    public EventType getEventType() {
         return eventType;
     }
 
-    public void setEventType(EVENT eventType) {
+    public void setEventType(EventType eventType) {
         this.eventType = eventType;
     }
 
