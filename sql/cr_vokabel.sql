@@ -25,5 +25,6 @@ CREATE TABLE event (
     e_w_id INT CONSTRAINT event_word_fk
         REFERENCES word(w_id),
     e_date DATE,
-    CONSTRAINT event_pk PRIMARY KEY (e_et_id, e_w_id)
+        CONSTRAINT event_pk PRIMARY KEY (e_et_id, e_w_id),
+    e_descr VARCHAR(200)
 );
