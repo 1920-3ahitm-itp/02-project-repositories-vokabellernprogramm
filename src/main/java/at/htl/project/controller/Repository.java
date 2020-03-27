@@ -1,4 +1,4 @@
-package at.htl.project.view;
+package at.htl.project.controller;
 
 public interface Repository {
     public void saveWord();
