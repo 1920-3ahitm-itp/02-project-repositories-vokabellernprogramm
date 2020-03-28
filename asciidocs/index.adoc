@@ -26,8 +26,6 @@ Author: {Author} {email}
 
 == CLD
 
-image:CLD.png[]
-
 [plantuml,CLD,png]
 ----
 @startuml
