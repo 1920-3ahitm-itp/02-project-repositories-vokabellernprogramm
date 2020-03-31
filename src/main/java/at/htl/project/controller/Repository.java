@@ -1,6 +1,10 @@
 package at.htl.project.controller;
 
-public interface Repository {
-    public void saveWord();
-    public void deleteWord();
+import java.util.List;
+
+public interface Repository<T> {
+    public void save(T entity);
+    public void delete(long id);
+    public List<T> findAll();
+    public T findById(long id);
 }

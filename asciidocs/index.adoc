@@ -13,10 +13,6 @@ Isabel Turner, Marah Steigersdorfer
 :sourcedir-test: src/test/java
 :toc: left
 
-++++
-<link rel="stylesheet"  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-++++
-
 
 Version: {revnumber} +
 Version Date: {revdate} +
@@ -29,16 +25,29 @@ Author: {Author} {email}
 [plantuml,CLD,png]
 ----
 @startuml
+class Category {
+  int: id
+  String: name
+}
 class Word {
+  int: id
+  String: german
+  String: english
   category: Category
 }
+class EventType
 class Event
-class EventWord
-class Category
+class Card {
+  Word: word
+  Event: event
+  int: correctCounter
+  int: failCounter
+}
 
 Word "*" -up-> "1" Category
 Word "*" -right- "*" Event
-(Word, Event) . EventWord
+(Word, Event) . Card
+Event "*" -right- "1" EventType
 @enduml
 ----
 
