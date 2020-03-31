@@ -21,8 +21,15 @@ INSERT INTO event_type (et_name) VALUES ('TEST');
 INSERT INTO event_type (et_name) VALUES ('MITARBEITSKONTROLLE');
 INSERT INTO event_type (et_name) VALUES ('UEBUNG');
 
-INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (1, 1, '2020-04-01 08:00:00', 'Schularbeit');
-INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (2, 2, '2020-05-13 10:00:00', 'Test');
-INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (3, 3, '2020-05-27 08:00:00', 'Mitarbeitskontrolle');
-INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (4, 4, '2020-6-02 12:45:00', 'Schularbeit');
+INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (1, '2020-04-01 08:00:00', 'Schularbeit');
+INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (2, '2020-05-13 10:00:00', 'Test');
+INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (3, '2020-05-27 08:00:00', 'Mitarbeitskontrolle');
+INSERT INTO event (evt_et_id, evt_date, evt_descr)VALUES (4, '2020-6-02 12:45:00', 'Schularbeit');
 
+INSERT INTO card (crd_wrd_id, crd_evt_id) VALUES (1, 1);
+INSERT INTO card (crd_wrd_id, crd_evt_id) VALUES (2, 1);
+INSERT INTO card (crd_wrd_id, crd_evt_id) VALUES (3, 1);
+INSERT INTO card (crd_wrd_id, crd_evt_id) VALUES (4, 1);
+INSERT INTO card (crd_wrd_id, crd_evt_id) VALUES (5, 1);
+INSERT INTO card (crd_wrd_id, crd_evt_id) VALUES (1, 2);
+INSERT INTO card (crd_wrd_id, crd_evt_id) VALUES (4, 2);

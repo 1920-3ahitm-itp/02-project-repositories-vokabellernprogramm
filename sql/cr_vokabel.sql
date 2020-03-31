@@ -23,6 +23,7 @@ CREATE TABLE event_type (
 
 CREATE TABLE event (
     evt_id INT CONSTRAINT evt_id_not_null NOT NULL
+        GENERATED ALWAYS AS IDENTITY
         CONSTRAINT event_pk PRIMARY KEY,
     evt_et_id INT CONSTRAINT evt_event_type_fk
         REFERENCES event_type(et_id),
