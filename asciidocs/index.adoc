@@ -86,27 +86,27 @@ image::https://i.imgur.com/Qbz1Ikq.jpg[Anwendungsfalldiagramm,700,400]
 - Kompatibilität
 - robust?
 
-
-
 == Zielsetzung
 Als Ziel dieses Programms soll vorallem die Effizienz des Lernens der Schüler im Vordergrund stehen.
 Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erzielen.
 
 == GANTT - Diagramm
-[plantuml, gantt, png]
+[plantuml, gantt, gantt-protoype,png]
 ----
 @startgantt
-[Prototype design] lasts 7 days
-[Code prototype] lasts 7 days
-[Write tests] lasts 7 days
+project starts the 2020/03/27
+[Prototype design] lasts 14 days
+[Code prototype] lasts 14 days
+[Write tests] lasts 14 days
 [Code prototype] starts at [Prototype design]'s end
 [Write tests] starts at [Code prototype]'s start
 [design FXML GUI] lasts 7 days
 [design FXML GUI] starts at [Write tests]'s end
-[make for user editable] lasts 7 days
+[make for user editable] lasts 14 days
 [make for user editable] starts at [design FXML GUI]'s end
-[add some expansions] lasts 7 days
+[add some expansions] lasts 14 days
 [add some expansions] starts at [make for user editable]'s end
-[debugging] starts at [add some expansions]'s end
+[debugging] starts at [add some expansions]'s end and lasts 7 days
 @endgantt
+
 ----
