@@ -7,39 +7,77 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WordRepository  {
+public class WordRepository implements Repository<Word> {
 
     private DataSource dataSource = Database.getDataSource();
 
-    public Word save(Word newWord) {
-        return insert(newWord);
+    @Override
+    public void save(Word newWord) {
+        insert(newWord);
     }
 
+    @Override
+    public void delete(long id) {
 
-    public void createTable() {
-        Database db = new Database();
+    }
+
+    @Override
+    public List<Word> findAll() {
+        List<Word> words = new ArrayList<>();
+
         try (Connection connection = dataSource.getConnection()) {
 
-            String sql = "CREATE TABLE WORD(" +
-                    "id INT GENERATED ALWAYS AS IDENTITY " +
-                    "CONSTRAINT pk_ PRIMARY KEY, " +
-                    "GERMAN_WORD VARCHAR(100)," +
-                    "ENGLISH_WORD VARCHAR(100)" +
-                    ")";
+            String sql = "SELECT W_C_ID, W_GERMAN, W_ENGLISH FROM WORD";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
 
-            System.out.println(sql);
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.execute();
-
+            while (result.next()) {
+                int id = result.getInt("ID");
+                String germanWord = result.getString("GERMAN_WORD");
+                String englishWord = result.getString("ENGLISH_WORD");
+                words.add(new Word(germanWord, englishWord));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return words;
     }
+
+    @Override
+    public Word findById(long id) {
+        return null;
+    }
+
+    //    public Word save(Word newWord) {
+//        return insert(newWord);
+//    }
+
+
+//    public void createTable() {
+//        Database db = new Database();
+//        try (Connection connection = dataSource.getConnection()) {
+//
+//            String sql = "CREATE TABLE WORD(" +
+//                    "id INT GENERATED ALWAYS AS IDENTITY " +
+//                    "CONSTRAINT pk_ PRIMARY KEY, " +
+//                    "GERMAN_WORD VARCHAR(100)," +
+//                    "ENGLISH_WORD VARCHAR(100)" +
+//                    ")";
+//
+//            System.out.println(sql);
+//            PreparedStatement pstmt = connection.prepareStatement(sql);
+//            pstmt.execute();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void delete(String englishWord) {
         try (Connection connection = dataSource.getConnection()) {
             try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate("DELETE FROM WORD WHERE ENGLISH_WORD =" + englishWord);
+                statement.executeUpdate("DELETE FROM WORD WHERE W_ENGLISH =" + englishWord);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -52,7 +90,7 @@ public class WordRepository  {
     private Word insert(Word wordToSave) {
 
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO WORD (GERMAN_WORD, ENGLISH_WORD) " +
+                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO WORD (W_GERMAN, W_ENGLISH) " +
                         "values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             stmnt.setString(1, wordToSave.getGermanWord());
             stmnt.setString(2, wordToSave.getEnglishWord());
@@ -90,24 +128,24 @@ public class WordRepository  {
         }
     }
 
-    public boolean tableExists() {
-        Database db = new Database();
-        try (Connection connection = dataSource.getConnection()) {
-
-            String sql = "SELECT * FROM SYS.SYSTABLES WHERE TABLENAME = 'WORD'";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            ResultSet result = pstmt.executeQuery();
-
-            if (result.next()) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+//    public boolean tableExists() {
+//        Database db = new Database();
+//        try (Connection connection = dataSource.getConnection()) {
+//
+//            String sql = "SELECT * FROM SYS.SYSTABLES WHERE TABLENAME = 'WORD'";
+//            PreparedStatement pstmt = connection.prepareStatement(sql);
+//            ResultSet result = pstmt.executeQuery();
+//
+//            if (result.next()) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
    /* private List<model.Word> readCsv(String fileName, int numberOfLines) {
         List<model.Word> words = new LinkedList<>();
 
@@ -129,26 +167,27 @@ public class WordRepository  {
         return words;
     }*/
 
-    public List<Word> getAllWords() {
-        List<Word> words = new ArrayList<>();
+//    public List<Word> getAllWords() {
+//        List<Word> words = new ArrayList<>();
+//
+//        try (Connection connection = dataSource.getConnection()) {
+//
+//            String sql = "SELECT W_C_ID, W_GERMAN, W_ENGLISH FROM WORD";
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            ResultSet result = statement.executeQuery();
+//
+//            while (result.next()) {
+//                int id = result.getInt("ID");
+//                String germanWord = result.getString("GERMAN_WORD");
+//                String englishWord = result.getString("ENGLISH_WORD");
+//                words.add(new Word(germanWord, englishWord));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return words;
+//    }
 
-        try (Connection connection = dataSource.getConnection()) {
-
-            String sql = "SELECT ID, GERMAN_WORD, ENGLISH_WORD FROM WORD";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet result = statement.executeQuery();
-
-            while (result.next()) {
-                int id = result.getInt("ID");
-                String germanWord = result.getString("GERMAN_WORD");
-                String englishWord = result.getString("ENGLISH_WORD");
-                words.add(new Word(germanWord, englishWord));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return words;
-    }
 
 }

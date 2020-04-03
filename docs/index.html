@@ -7,7 +7,7 @@
 <meta name="generator" content="Asciidoctor 2.0.10">
 <meta name="author" content="Isabel Turner, Marah Steigersdorfer">
 <link rel="icon" type="image/png" href="themes/favicon.png">
-<title>Pflichtenheft</title>
+<title>Vokabel-Lernprogramm</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -449,11 +449,11 @@ pre.rouge .hll * {
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Pflichtenheft</h1>
+<h1>Vokabel-Lernprogramm</h1>
 <div class="details">
 <span id="author" class="author">Isabel Turner, Marah Steigersdorfer</span><br>
 <span id="revnumber">version 1.0,</span>
-<span id="revdate">28.02.2020</span>
+<span id="revdate">03.04.2020</span>
 <br><span id="revremark">Some notes</span>
 </div>
 <div id="toc" class="toc2">
@@ -478,10 +478,9 @@ pre.rouge .hll * {
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<link rel="stylesheet"  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="paragraph">
 <p>Version: 1.0<br>
-Version Date: 28.02.2020<br>
+Version Date: 03.04.2020<br>
 Version Notes: {revmark}<br>
 Author: Isabel Turner, Marah Steigersdorfer {email}</p>
 </div>
@@ -492,7 +491,7 @@ Author: Isabel Turner, Marah Steigersdorfer {email}</p>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="images/CLD.png" alt="CLD" width="277" height="295">
+<img src="images/CLD.png" alt="CLD" width="409" height="410">
 </div>
 </div>
 </div>
@@ -595,9 +594,24 @@ Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erz
 <div class="sect1">
 <h2 id="_gantt_diagramm"><a class="anchor" href="#_gantt_diagramm"></a>9. GANTT - Diagramm</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="images/gantt.png" alt="gantt" width="637" height="129">
+<pre>Failed to generate image: Asciidoctor::Diagram::PlantUmlBlockProcessor does not support output format gantt-protoype
+@startgantt
+project starts the 2020/03/27
+[Prototype design] lasts 14 days
+[Code prototype] lasts 14 days
+[Write tests] lasts 14 days
+[Code prototype] starts at [Prototype design]'s end
+[Write tests] starts at [Code prototype]'s start
+[design FXML GUI] lasts 7 days
+[design FXML GUI] starts at [Write tests]'s end
+[make for user editable] lasts 14 days
+[make for user editable] starts at [design FXML GUI]'s end
+[add some expansions] lasts 14 days
+[add some expansions] starts at [make for user editable]'s end
+[debugging] starts at [add some expansions]'s end and lasts 7 days
+@endgantt</pre>
 </div>
 </div>
 </div>
@@ -606,7 +620,7 @@ Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erz
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2020-03-23 15:35:13 UTC
+Last updated 2020-04-03 09:41:01 UTC
 </div>
 </div>
 </body>

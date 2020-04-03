@@ -2,11 +2,18 @@ package at.htl.project.model;
 
 public class Word {
 
+    private int id;
     private String germanWord = "";
     private String englishWord = "";
     //private Category category = new Category();
 
     public Word() {
+    }
+
+    public Word(int id, String germanWord, String englishWord) {
+        this.id = id;
+        this.germanWord = germanWord;
+        this.englishWord = englishWord;
     }
 
     public Word(String germanWord, String englishWord) {
