@@ -90,9 +90,16 @@ image::https://i.imgur.com/0dDuWJA.png[Projektstrukturplan,700,400]
 ----
 @startuml
 left to right direction
-actor student
-rectangle "Vokabellernprogramm"{
-student -- (Vokabel lernen)
+actor Student
+
+rectangle Vokabel-Lernprogramm {
+Student -- (Erstellen eines neuen Lernsets)
+Student -- (Bearbeiten der Lernsets)
+Student -- (Üben der Vokabel)
+
+(Bearbeiten der Lernsets) -- (Hinzufügen von Vokabel)
+(Bearbeiten der Lernsets) -- (Löschen der Vokabel)
+
 }
 @enduml
 ----
