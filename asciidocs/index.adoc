@@ -1,4 +1,4 @@
-= Pflichtenheft
+= Vokabellernprogramm
 // Metadata
 Isabel Turner, Marah Steigersdorfer
 1.0, 28.02.2020: Some notes
@@ -17,10 +17,40 @@ Isabel Turner, Marah Steigersdorfer
 Version: {revnumber} +
 Version Date: {revdate} +
 Version Notes: {revmark} +
-Author: {Author} {email}
+Author: {Author}
+
+== Pflichtenheft 'Was mache ich'
+
+=== 1.1 Beschreibung der Ausgangssituation
+Ein Vokabellernprogramm soll erstellt werden, um Schülern das Lernen der Vokabeln zu erleichtern.
+Die Schüler können selbst die Vokabeln eintragen, welche hinzufügen, bearbeiten oder löschen.
+Sie können sich auch selbstständig prüfen lassen, um zu schauen, ob sie genug gelernt haben.
+Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
+
+=== 1.2 Ist-Zustand
+Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann.
+Die Vokabeln können eingegeben werden, geprüft werden und die erreichten Punkte werden ausgewertet.
+
+=== 1.3 Aufgabenstellung
+Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im
+Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
+
+=== 1.3.1 Funktionale Anforderungen
+### Anwendungsfalldiagramm
+[link=https://i.imgur.com/Qbz1Ikq.jpg]
+image::https://i.imgur.com/Qbz1Ikq.jpg[Anwendungsfalldiagramm,700,400]
+
+=== 1.3.2 Nicht-funktionale Anforderungen
+- Flexibilität
+- Kompatibilität
+- robust?
+
+=== 1.4 Zielsetzung
+Als Ziel dieses Programms soll vorallem die Effizienz des Lernens der Schüler im Vordergrund stehen.
+Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erzielen.
 
 
-== CLD
+== 2. CLD
 
 [plantuml,CLD,png]
 ----
@@ -51,46 +81,32 @@ Event "*" -right- "1" EventType
 @enduml
 ----
 
-
-== 1. Beschreibung der Ausgangssituation
-Ein Vokabellernprogramm soll erstellt werden, um Schülern das Lernen der Vokabeln zu erleichtern.
-Die Schüler können selbst die Vokabeln eintragen, welche hinzufügen, bearbeiten oder löschen.
-Sie können sich auch selbstständig prüfen lassen, um zu schauen, ob sie genug gelernt haben.
-Am Ende wird die "Prüfung" ausgewertet und die Punkte werden gezählt.
-
-== 2. Ist-Zustand
-Momentan ist der derzeitige Stand soweit, dass das Programm in vereinfachter Form ausprobiert werden kann.
-Die Vokabeln können eingegeben werden, geprüft werden und die erreichten Punkte werden ausgewertet.
-
-== Projektstrukturplan
+== 3. Projektstrukturplan
 [link=https://i.imgur.com/0dDuWJA.png]
 image::https://i.imgur.com/0dDuWJA.png[Projektstrukturplan,700,400]
+---
 
+[plantuml,ucd,png]
+----
+@startuml
+left to right direction
+actor student
+rectangle "Vokabellernprogramm"{
+student -- (Vokabel lernen)
+}
+@enduml
+----
 
-== 4. Aufgabenstellung
-Natürlich soll das Vokabellernprogramm noch erweitert werden. Die Erweiterungen liegen vorallem im
-Bearbeiten, im Löschen, im Hinzufügen der Vokabeln und im Design/Aufbau des Programms.
-
-== Funktionale Anforderungen
-### Anwendungsfalldiagramm
-[link=https://i.imgur.com/Qbz1Ikq.jpg]
-image::https://i.imgur.com/Qbz1Ikq.jpg[Anwendungsfalldiagramm,700,400]
 
 - Hinzufügen der Vokabeln
 - Bearbeiten der Vokabeln
 - Löschen der Vokabeln
 - Auswertung der Überprüfung
 
-== Nicht-funktionale Anforderungen
-- Flexibilität
-- Kompatibilität
-- robust?
 
-== Zielsetzung
-Als Ziel dieses Programms soll vorallem die Effizienz des Lernens der Schüler im Vordergrund stehen.
-Die Schüler sollen mehr Freude am Lernen entwickeln und somit bessere Noten erzielen.
+== 4. Projekthandbuch 'Organisatorische Rahmenbedingungen'
 
-== GANTT - Diagramm
+=== 4.1 GANTT - Diagramm
 [plantuml, gantt, gantt-protoype,png]
 ----
 @startgantt
