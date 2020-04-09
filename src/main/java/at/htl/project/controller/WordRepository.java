@@ -27,7 +27,7 @@ public class WordRepository implements Repository<Word> {
 
         try (Connection connection = dataSource.getConnection()) {
 
-            String sql = "SELECT W_C_ID, W_GERMAN, W_ENGLISH FROM WORD";
+            String sql = "SELECT WRD_ID, WRD_GERMAN, WRD_ENGLISH FROM WORD";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
 
@@ -77,7 +77,7 @@ public class WordRepository implements Repository<Word> {
     public void delete(String englishWord) {
         try (Connection connection = dataSource.getConnection()) {
             try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate("DELETE FROM WORD WHERE W_ENGLISH =" + englishWord);
+                statement.executeUpdate("DELETE FROM WORD WHERE WRD_ENGLISH =" + englishWord);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -90,7 +90,7 @@ public class WordRepository implements Repository<Word> {
     private Word insert(Word wordToSave) {
 
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO WORD (W_GERMAN, W_ENGLISH) " +
+                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO WORD (WRD_GERMAN, WRD_ENGLISH) " +
                         "values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             stmnt.setString(1, wordToSave.getGermanWord());
             stmnt.setString(2, wordToSave.getEnglishWord());
