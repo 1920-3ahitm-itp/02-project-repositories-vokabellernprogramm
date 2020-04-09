@@ -35,6 +35,18 @@ public class CategoryRepository implements Repository<Category> {
     @Override
     public void delete(long id) {
 
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM CATEGORY WHERE CAT_ID="+ id;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setLong(1, id);
+
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Delete from CATEGORY failed, no rows affected");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
