@@ -37,7 +37,7 @@ public class CategoryRepository implements Repository<Category> {
     public void delete(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "DELETE FROM CATEGORY WHERE CAT_ID="+ id;
+            String sql = "DELETE FROM CATEGORY WHERE CAT_ID=" + id;
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, id);
 
@@ -74,16 +74,37 @@ public class CategoryRepository implements Repository<Category> {
 
     @Override
     public Category findById(long id) {
-        try(Connection connection = dataSource.getConnection()){
+        try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM CATEGORY WHERE ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, id);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 Category selectedCategory = new Category();
                 selectedCategory.setId(id);
                 resultSet.next();
                 selectedCategory.setName("NAME");
                 return selectedCategory;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Category> findByName(String name) {
+        List<Category> categories = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT ID FROM CATEGORY WHERE NAME = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next() == true) {
+                    Category selectedCategory = new Category();
+                    selectedCategory.setId(resultSet.getLong("id"));
+                    categories.add(selectedCategory);
+                }
+                return categories;
             }
         } catch (SQLException e) {
             e.printStackTrace();
