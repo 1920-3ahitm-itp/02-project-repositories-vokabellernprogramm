@@ -39,7 +39,24 @@ public class CategoryRepository implements Repository<Category> {
 
     @Override
     public List<Category> findAll() {
-        return null;
+
+        List<Category> categories = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT CAT_ID, CAT_NAME FROM CATEGORY";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                Long id = result.getLong("ID");
+                String name = result.getString("NAME");
+                categories.add(new Category(name));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return categories;
     }
 
     @Override
