@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +74,20 @@ public class CategoryRepository implements Repository<Category> {
 
     @Override
     public Category findById(long id) {
+        try(Connection connection = dataSource.getConnection()){
+            String sql = "SELECT * FROM CATEGORY WHERE ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                Category selectedCategory = new Category();
+                selectedCategory.setId(id);
+                resultSet.next();
+                selectedCategory.setName("NAME");
+                return selectedCategory;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
