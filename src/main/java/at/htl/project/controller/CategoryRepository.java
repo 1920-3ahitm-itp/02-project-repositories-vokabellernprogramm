@@ -73,14 +73,14 @@ public class CategoryRepository implements Repository<Category> {
     @Override
     public Category findById(long id) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM CATEGORY WHERE ID = ?";
+            String sql = "SELECT * FROM CATEGORY WHERE CAT_ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 Category selectedCategory = new Category();
                 selectedCategory.setId(id);
                 resultSet.next();
-                selectedCategory.setName("NAME");
+                selectedCategory.setName("CAT_NAME");
                 return selectedCategory;
             }
         } catch (SQLException e) {
@@ -93,7 +93,7 @@ public class CategoryRepository implements Repository<Category> {
     public List<Category> findByName(String name) {
         List<Category> categories = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT ID FROM CATEGORY WHERE NAME = ?";
+            String sql = "SELECT CAT_ID FROM CATEGORY WHERE CAT_NAME = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
