@@ -10,5 +10,5 @@ public interface Repository<T> {
     public List<T> findAll();
     public T findById(long id);
 
-    List<Category> findByName(String name);
+    List<T> findByName(String name);
 }

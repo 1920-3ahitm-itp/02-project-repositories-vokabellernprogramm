@@ -22,20 +22,21 @@ class WordRepositoryTest {
   DataSource dataSource = Database.getDataSource();
   WordRepository repository = new WordRepository();
 
-  @BeforeEach
-  void beforeEach() {
-    repository = new WordRepository();
-
-    if (repository.tableExists()) {
-      repository.dropTable();
-    }
-  }
+//  @BeforeEach
+//  void beforeEach() {
+//    repository = new WordRepository();
+//
+//    if (repository.tableExists()) {
+//      repository.dropTable();
+//    }
+//  }
 
 
   @Test
   void save(){
       Word word = new Word(0, "Schule", "school");
       repository.save(word);
+
 
       Table table = new Table(Database.getDataSource(), "WORD");
 

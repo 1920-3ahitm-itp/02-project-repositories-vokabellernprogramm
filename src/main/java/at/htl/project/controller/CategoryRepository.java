@@ -97,7 +97,7 @@ public class CategoryRepository implements Repository<Category> {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next() == true) {
+                while (resultSet.next()) {
                     Category selectedCategory = new Category();
                     selectedCategory.setId(resultSet.getLong("id"));
                     categories.add(selectedCategory);

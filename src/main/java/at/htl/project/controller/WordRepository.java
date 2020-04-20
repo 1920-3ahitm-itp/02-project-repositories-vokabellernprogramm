@@ -49,6 +49,11 @@ public class WordRepository implements Repository<Word> {
         return null;
     }
 
+    @Override
+    public List<Word> findByName(String name) {
+        return null;
+    }
+
     //    public Word save(Word newWord) {
 //        return insert(newWord);
 //    }
