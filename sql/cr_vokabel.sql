@@ -39,4 +39,4 @@ CREATE TABLE card (
     crd_fail_counter INT DEFAULT 0,
     crd_wrd_id INT CONSTRAINT crd_word_fk REFERENCES word(wrd_id),
     crd_evt_id INT CONSTRAINT crd_event_fk REFERENCES event(evt_id)
-)
+);
