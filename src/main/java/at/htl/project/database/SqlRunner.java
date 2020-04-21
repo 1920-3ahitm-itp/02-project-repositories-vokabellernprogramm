@@ -13,13 +13,6 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 
 public class SqlRunner {
 
-//  private static final List<String> sqlFilePaths =
-//      List.of(
-//          "sql/dr_vokabel.sql",
-//          "sql/cr_vokabel.sql",
-//          "sql/ins_vokabel.sql"
-//      );
-
   private static final String SCRIPT_PROPERTIES_PATH = "sql/script-files.properties";
 
   public static void main(String[] args) {
