@@ -1,4 +1,4 @@
-module at.htl.project {
+module vocabulary {
   requires javafx.controls;
   requires javafx.fxml;
   requires java.sql;
@@ -7,8 +7,9 @@ module at.htl.project {
   requires org.apache.derby.tools;
   requires org.mybatis;
 
-  opens at.htl.project.view to javafx.fxml;
-  exports at.htl.project.view;
-  exports at.htl.project.controller;
-  exports at.htl.project.model;
+  opens at.htl.vocabulary.view to javafx.fxml;
+  exports at.htl.vocabulary.view;
+  exports at.htl.vocabulary.controller;
+  exports at.htl.vocabulary.model;
+  exports at.htl.vocabulary.database;
 }

@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="02-project-repositories-vokabellernprogramm" />
+        <module name="vocabulary" />
+        <module name="vocabulary-program" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="02-project-repositories-vokabellernprogramm" target="11" />
+      <module name="vocabulary" target="11" />
+      <module name="vocabulary-program" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

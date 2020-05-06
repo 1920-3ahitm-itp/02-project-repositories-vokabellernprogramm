@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/02-project-repositories-vokabellernprogramm.iml" filepath="$PROJECT_DIR$/.idea/02-project-repositories-vokabellernprogramm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/test/test.iml" filepath="$PROJECT_DIR$/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vocabulary-program.iml" filepath="$PROJECT_DIR$/vocabulary-program.iml" />
     </modules>
   </component>
 </project>
