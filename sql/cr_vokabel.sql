@@ -1,7 +1,7 @@
 CREATE TABLE category (
   cat_id INT NOT NULL GENERATED ALWAYS AS IDENTITY
        CONSTRAINT category_pk PRIMARY KEY,
-  cat_name VARCHAR(50)
+  cat_name VARCHAR(50) CONSTRAINT category_name_uq UNIQUE
 );
 
 CREATE TABLE word (
