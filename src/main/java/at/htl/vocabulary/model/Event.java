@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Event {
 
+    Long id;
+
     //eventType: Art des Events
     EventType eventType;
 

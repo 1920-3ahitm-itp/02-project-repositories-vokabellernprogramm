@@ -1,27 +1,35 @@
 package at.htl.vocabulary.controller;
 
+import at.htl.vocabulary.database.SqlRunner;
 import at.htl.vocabulary.model.Category;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
 import javax.sql.DataSource;
 
 import static org.assertj.db.api.Assertions.assertThat;
+import static org.assertj.db.output.Outputs.output;
+import static org.junit.jupiter.api.Assertions.fail;
 
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class CategoryRepositoryTest {
 
     DataSource dataSource = Database.getDataSource();
     static CategoryRepository repository;
 
     @BeforeAll
-    static void beforeAll(){
+    static void beforeAll() {
+        SqlRunner.runScript();
         repository = new CategoryRepository();
     }
 
 
     @Test
-    void save() {
+    void t0010_save() {
         Category category = new Category("School");
         repository.save(category);
 
@@ -32,23 +40,28 @@ class CategoryRepositoryTest {
     }
 
     @Test
-    void delete() {
-        Category category = new Category("School");
+    void t0020_delete() {
 
-        Table table = new Table(dataSource, "School");
+
+        String categoryName = "School";
+
+        Table table = new Table(dataSource, "CATEGORY");
+        output(table).toConsole();
         int expectedRows = table.getRowsList().size() - 1;
-        repository.delete(expectedRows);
+        repository.deleteByName(categoryName);
 
-        table = new Table(dataSource, "School");
-
+        table = new Table(dataSource, "CATEGORY");
+        output(table).toConsole();
         assertThat(table).hasNumberOfRows(expectedRows);
-        assertThat(table).row(expectedRows - 1)
-                .value("id").isNotEqualTo(category.getId());
+
+        if (repository.findByName(categoryName) != null) {
+            fail("CATEGORY " + categoryName + " not deleted from db");
+        }
 
     }
 
     @Test
-    void findAllTest() {
+    void t0030_findAllTest() {
 //        List<Category> categories = repository.findAll();
 //
 //        Table table = new Table(dataSource, "Category");
@@ -65,7 +78,7 @@ class CategoryRepositoryTest {
     }
 
     @Test
-    void findById() {
+    void t0040_findById() {
 
 //        List<Category> categories = repository.findAll() ;
 //        categories.stream().forEach(repository::save);

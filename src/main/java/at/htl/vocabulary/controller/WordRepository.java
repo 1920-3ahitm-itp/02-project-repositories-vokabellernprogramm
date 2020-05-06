@@ -1,5 +1,6 @@
 package at.htl.vocabulary.controller;
 
+import at.htl.vocabulary.model.Category;
 import at.htl.vocabulary.model.Word;
 
 import javax.sql.DataSource;
@@ -17,8 +18,7 @@ public class WordRepository implements Repository<Word> {
     }
 
     @Override
-    public void delete(long id) {
-
+    public void delete(int id) {
     }
 
     @Override
@@ -45,14 +45,10 @@ public class WordRepository implements Repository<Word> {
     }
 
     @Override
-    public Word findById(long id) {
+    public Word findById(int id) {
         return null;
     }
 
-    @Override
-    public List<Word> findByName(String name) {
-        return null;
-    }
 
     //    public Word save(Word newWord) {
 //        return insert(newWord);
