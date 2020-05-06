@@ -15,7 +15,10 @@ public class SqlRunner {
   private static final String SCRIPT_PROPERTIES_PATH = "sql/script-files.properties";
 
   public static void main(String[] args) {
+    runScript();
+  }
 
+  public static void runScript() {
     try {
       Properties scriptProperties = new Properties();
       scriptProperties.load(new FileInputStream(SCRIPT_PROPERTIES_PATH));
