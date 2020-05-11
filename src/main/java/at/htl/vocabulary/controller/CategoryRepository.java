@@ -121,7 +121,8 @@ public class CategoryRepository implements Repository<Category> {
                 Category selectedCategory = new Category();
                 selectedCategory.setId(id);
                 resultSet.next();
-                selectedCategory.setName("CAT_NAME");
+                String name = resultSet.getString("CAT_NAME");
+                selectedCategory.setName(name);
                 return selectedCategory;
             }
         } catch (SQLException e) {

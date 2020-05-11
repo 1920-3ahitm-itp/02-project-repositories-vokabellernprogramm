@@ -104,6 +104,17 @@ class CategoryRepositoryTest {
 //        assertThat(actualCategory).isEqualTo(expectedCateory);
 //        assertThat(actualCategory.getId()).isEqualTo(expectedCateory.getId());
 
+        Table table = new Table(dataSource, "CATEGORY");
+
+        Category category = repository.findById(1);
+        output(table).toConsole();
+
+        String [] expected = {String.valueOf(category.getId()), category.getName()};
+        String [] actual = {
+                table.getRow(0).getValuesList().get(0).getValue().toString(),
+                table.getRow(0).getValuesList().get(1).getValue().toString()
+        };
+        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
 
     }
 }
