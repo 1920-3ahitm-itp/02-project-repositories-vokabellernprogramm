@@ -72,7 +72,7 @@ public class CategoryRepository implements Repository<Category> {
     public void delete(int id) {
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "DELETE FROM CATEGORY WHERE CAT_ID=?";
+            String sql = "DELETE FROM category WHERE cat_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
 
@@ -96,13 +96,13 @@ public class CategoryRepository implements Repository<Category> {
         List<Category> categories = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT CAT_ID, CAT_NAME FROM CATEGORY";
+            String sql = "SELECT cat_id, cat_name FROM category";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                Long id = result.getLong("ID");
-                String name = result.getString("NAME");
+                Long id = result.getLong("CAT_ID");
+                String name = result.getString("CAT_NAME");
                 categories.add(new Category(name));
             }
         } catch (SQLException e) {
@@ -114,7 +114,7 @@ public class CategoryRepository implements Repository<Category> {
     @Override
     public Category findById(int id) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM CATEGORY WHERE CAT_ID = ?";
+            String sql = "SELECT * FROM category WHERE cat_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {

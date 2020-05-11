@@ -3,6 +3,7 @@ package at.htl.vocabulary.controller;
 import at.htl.vocabulary.database.SqlRunner;
 import at.htl.vocabulary.model.Category;
 import org.assertj.db.api.Assertions;
+import org.assertj.db.type.Row;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
@@ -10,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import javax.sql.DataSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.db.api.Assertions.assertThat;
 import static org.assertj.db.output.Outputs.output;
@@ -42,7 +46,6 @@ class CategoryRepositoryTest {
     @Test
     void t0020_delete() {
 
-
         String categoryName = "School";
 
         Table table = new Table(dataSource, "CATEGORY");
@@ -61,20 +64,26 @@ class CategoryRepositoryTest {
     }
 
     @Test
-    void t0030_findAllTest() {
+    void t0030_findAll() {
 //        List<Category> categories = repository.findAll();
 //
 //        Table table = new Table(dataSource, "Category");
 //        List<Category> expected = new ArrayList<>();
 //
 //        for(Row row: table.getRowsList()){
-//            int id = Integer.parseInt(row.getColumnValue("id").getValue().toString());
-//            String name = (String) row.getColumnValue("name").getValue().toString();
+//            int id = Integer.parseInt(row.getColumnValue("cat_id").getValue().toString());
+//            String name = row.getColumnValue("cat_name").getValue().toString();
 //            Category category = new Category(name);
 //            expected.add(category);
 //        }
 //
 //       assertThat(categories).containsExactly(expected.toArray(new Category[0]));
+
+        int allRows = repository.findAll().size();
+        Table table = new Table(dataSource, "CATEGORY");
+        int tableRows = table.getRowsList().size();
+
+        org.assertj.core.api.Assertions.assertThat(allRows).isEqualTo(tableRows);
     }
 
     @Test
@@ -94,6 +103,7 @@ class CategoryRepositoryTest {
 //
 //        assertThat(actualCategory).isEqualTo(expectedCateory);
 //        assertThat(actualCategory.getId()).isEqualTo(expectedCateory.getId());
+
 
     }
 }
