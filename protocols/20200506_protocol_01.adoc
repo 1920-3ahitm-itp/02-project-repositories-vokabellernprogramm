@@ -1,0 +1,17 @@
+# Protokoll vom 06.05.20
+---
+
+Wo: Discord
+
+Wann: 06.05.20
+
+Wer: Marah Steigersdorfer, Prof. Stütz
+
+---
+
+Vereinbart:
+
+- WordRepository
+- CategoryTests
+
+- Events -> gemeinsam
