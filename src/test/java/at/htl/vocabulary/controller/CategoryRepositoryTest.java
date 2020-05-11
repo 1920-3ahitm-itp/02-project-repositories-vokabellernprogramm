@@ -31,13 +31,12 @@ class CategoryRepositoryTest {
         repository = new CategoryRepository();
     }
 
-
     @Test
     void t0010_save() {
         Category category = new Category("School");
+        Table table = new Table(dataSource, "CATEGORY");
         repository.save(category);
 
-        Table table = new Table(dataSource, "CATEGORY");
         Assertions.assertThat(table).row(table.getRowsList().size() - 1)
                 .value("CAT_NAME").isEqualTo("School");
 
