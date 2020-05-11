@@ -93,6 +93,18 @@ class WordRepositoryTest {
   }
   @Test
   void t0050_findById(){
+    Table table = new Table(dataSource, "WORD");
 
+    Word word = repository.findById(1);
+    output(table).toConsole();
+
+    String [] expected = {String.valueOf(word.getId()), word.getGermanWord(), word.getEnglishWord()};
+    String [] actual = {
+            table.getRow(0).getValuesList().get(0).getValue().toString(),
+            table.getRow(0).getValuesList().get(1).getValue().toString(),
+            table.getRow(0).getValuesList().get(2).getValue().toString()
+    };
+
+    org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
   }
 }
