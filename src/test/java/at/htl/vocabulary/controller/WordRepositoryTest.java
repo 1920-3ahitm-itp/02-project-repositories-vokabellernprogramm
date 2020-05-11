@@ -1,5 +1,6 @@
 package at.htl.vocabulary.controller;
 
+import at.htl.vocabulary.model.Category;
 import at.htl.vocabulary.model.Word;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
@@ -29,41 +30,43 @@ class WordRepositoryTest {
 
 
   @Test
-  void save(){
-      Word word = new Word(0, "Schule", "school");
-      repository.save(word);
+  void t0010_save(){
 
+    Word wrd = new Word("Schule","school");
+    repository.save(wrd);
 
-      Table table = new Table(Database.getDataSource(), "WORD");
-
-      Assertions.assertThat(table).row(table.getRowsList().size() - 1)
-              .value("W_GERMAN").isEqualTo("Schule")
-              .value("W_ENGLISH").isEqualTo("school");
-  }
-
-    @Test
-  void createTable() {
-//    repository.createTable();
-//
-//    assertThat(repository.tableExists() == true);
+    Table table = new Table(dataSource, "WORD");
+    Assertions.assertThat(table).row(table.getRowsList().size() - 1)
+            .value("WRD_ENGLISH").isEqualTo("school");
   }
 
   @Test
-  void delete() {
+  void t0020_delete() {
+
+  }
+
+
+  @Test
+  void t0030_findAll() {
+
+    int allRows = repository.findAll().size();
+    Table table = new Table(dataSource, "WORD");
+    int tableRows = table.getRowsList().size();
+
+    org.assertj.core.api.Assertions.assertThat(allRows).isEqualTo(tableRows);
+  }
+
+  @Test
+  void t0040_findByName(){
+
+  }
+  @Test
+  void t0050_findById(){
 
   }
 
   @Test
-  void dropTable() {
-  }
-
-  @Test
-  void tableExists() {
-     // assertThat(repository.tableExists() == true);
-  }
-
-  @Test
-  void getAllWords() {
+  void t0060_getAllWords() {
 
 //    List<Word> words = repository.getAllWords();
 //    Table table = new Table(Database.getDataSource(), "WORD");

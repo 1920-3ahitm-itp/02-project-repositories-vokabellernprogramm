@@ -60,7 +60,6 @@ class CategoryRepositoryTest {
         if (repository.findByName(categoryName) != null) {
             fail("CATEGORY " + categoryName + " not deleted from db");
         }
-
     }
 
     @Test
@@ -114,6 +113,7 @@ class CategoryRepositoryTest {
                 table.getRow(0).getValuesList().get(0).getValue().toString(),
                 table.getRow(0).getValuesList().get(1).getValue().toString()
         };
+
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
 
     }

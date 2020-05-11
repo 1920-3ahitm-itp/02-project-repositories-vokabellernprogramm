@@ -70,9 +70,9 @@ public class WordRepository implements Repository<Word> {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                int id = result.getInt("ID");
-                String germanWord = result.getString("GERMAN_WORD");
-                String englishWord = result.getString("ENGLISH_WORD");
+                int id = result.getInt("WRD_ID");
+                String germanWord = result.getString("WRD_GERMAN");
+                String englishWord = result.getString("WRD_ENGLISH");
                 words.add(new Word(germanWord, englishWord));
             }
         } catch (SQLException e) {
