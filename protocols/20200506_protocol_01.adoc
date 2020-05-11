@@ -9,6 +9,8 @@ Wer: Marah Steigersdorfer, Prof. Stütz
 
 ---
 
+
+
 Vereinbart:
 
 - WordRepository

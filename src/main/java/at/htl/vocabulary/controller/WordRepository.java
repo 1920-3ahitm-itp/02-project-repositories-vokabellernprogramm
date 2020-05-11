@@ -92,8 +92,10 @@ public class WordRepository implements Repository<Word> {
                 Word selectedWord = new Word();
                 selectedWord.setId(id);
                 resultSet.next();
-                selectedWord.setGermanWord("WRD_GERMAN");
-                selectedWord.setEnglishWord("WRD_ENGLISH");
+                String germanWrd = resultSet.getString("WRD_GERMAN");
+                String englishWrd = resultSet.getString("WRD_ENGLISH");
+                selectedWord.setGermanWord(germanWrd);
+                selectedWord.setEnglishWord(englishWrd);
                 return selectedWord;
             }
         } catch (SQLException e) {
