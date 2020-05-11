@@ -13,5 +13,4 @@ Vereinbart:
 
 - WordRepository
 - CategoryTests
-
 - Events -> gemeinsam

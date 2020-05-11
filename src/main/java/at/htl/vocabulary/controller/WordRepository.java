@@ -14,11 +14,49 @@ public class WordRepository implements Repository<Word> {
 
     @Override
     public void save(Word newWord) {
-        insert(newWord);
+        if (newWord.getId() == null){
+            insert(newWord);
+        }else{
+            update(newWord);
+        }
+    }
+
+    private void update(Word newWord) {
+            try (Connection connection = dataSource.getConnection()) {
+                String sql = "UPDATE word SET wrd_german=?, wrd_english=? WHERE wrd_id=?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setLong(1, newWord.getId());
+                statement.setString(2, newWord.getGermanWord());
+                statement.setString(3, newWord.getEnglishWord());
+
+                if (statement.executeUpdate() == 0) {
+                    throw new SQLException("Update of WORD failed, no rows affected");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
 
     @Override
     public void delete(int id) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM word WHERE wrd_id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Delete from WORD failed, no rows affected");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteByEnglishWrd(String englishWrdName) {
+        Word toDelete = findByName(englishWrdName);
+        delete(toDelete.getId());
     }
 
     @Override
@@ -27,7 +65,7 @@ public class WordRepository implements Repository<Word> {
 
         try (Connection connection = dataSource.getConnection()) {
 
-            String sql = "SELECT WRD_ID, WRD_GERMAN, WRD_ENGLISH FROM WORD";
+            String sql = "SELECT wrd_id, wrd_german, wrd_english FROM word";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
 
@@ -46,52 +84,61 @@ public class WordRepository implements Repository<Word> {
 
     @Override
     public Word findById(int id) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT * FROM word WHERE wrd_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                Word selectedWord = new Word();
+                selectedWord.setId(id);
+                resultSet.next();
+                selectedWord.setGermanWord("WRD_GERMAN");
+                selectedWord.setEnglishWord("WRD_ENGLISH");
+                return selectedWord;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
-
-
-    //    public Word save(Word newWord) {
-//        return insert(newWord);
-//    }
-
-
-//    public void createTable() {
-//        Database db = new Database();
+//
+//
+//    public void deleteByWrd(String englishWord) {
 //        try (Connection connection = dataSource.getConnection()) {
+//            try (Statement statement = connection.createStatement()) {
+//                statement.executeUpdate("DELETE FROM word WHERE wrd_english =" + englishWord);
 //
-//            String sql = "CREATE TABLE WORD(" +
-//                    "id INT GENERATED ALWAYS AS IDENTITY " +
-//                    "CONSTRAINT pk_ PRIMARY KEY, " +
-//                    "GERMAN_WORD VARCHAR(100)," +
-//                    "ENGLISH_WORD VARCHAR(100)" +
-//                    ")";
-//
-//            System.out.println(sql);
-//            PreparedStatement pstmt = connection.prepareStatement(sql);
-//            pstmt.execute();
-//
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
 //    }
 
-    public void delete(String englishWord) {
-        try (Connection connection = dataSource.getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate("DELETE FROM WORD WHERE WRD_ENGLISH =" + englishWord);
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public Word findByName(String name) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT wrd_id, wrd_german, wrd_english FROM word WHERE wrd_english = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                resultSet.next();
+                int id = resultSet.getInt(1);
+                String germanWrd = resultSet.getString(2);
+                String englishWrd = resultSet.getString(3);
+                return new Word(id, germanWrd, englishWrd);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
+        return null;
     }
 
     private Word insert(Word wordToSave) {
 
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO WORD (WRD_GERMAN, WRD_ENGLISH) " +
+                PreparedStatement stmnt = conn.prepareStatement("INSERT INTO word (wrd_german, wrd_english) " +
                         "values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             stmnt.setString(1, wordToSave.getGermanWord());
             stmnt.setString(2, wordToSave.getEnglishWord());
@@ -100,14 +147,6 @@ public class WordRepository implements Repository<Word> {
                 throw new SQLException("Creating user failed, no rows affected");
             }
 
-            /*try (ResultSet generatedKeys = stmnt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    wordToSave.setId(generatedKeys.getLong(1));
-                } else {
-                    throw new SQLException("Creating user failed, no ID obtained");
-                }
-            }*/
-
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -115,19 +154,19 @@ public class WordRepository implements Repository<Word> {
         return wordToSave;
     }
 
-    public void dropTable() {
-        Database db = new Database();
-        try (Connection connection = dataSource.getConnection()) {
-
-            String sql = "DROP TABLE WORD";
-
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.execute();
-            System.out.println("Dropped table WORD.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void dropTable() {
+//        Database db = new Database();
+//        try (Connection connection = dataSource.getConnection()) {
+//
+//            String sql = "DROP TABLE WORD";
+//
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.execute();
+//            System.out.println("Dropped table WORD.");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    public boolean tableExists() {
 //        Database db = new Database();
@@ -147,6 +186,7 @@ public class WordRepository implements Repository<Word> {
 //        }
 //        return false;
 //    }
+//
    /* private List<model.Word> readCsv(String fileName, int numberOfLines) {
         List<model.Word> words = new LinkedList<>();
 
@@ -167,7 +207,6 @@ public class WordRepository implements Repository<Word> {
         }
         return words;
     }*/
-
 //    public List<Word> getAllWords() {
 //        List<Word> words = new ArrayList<>();
 //
