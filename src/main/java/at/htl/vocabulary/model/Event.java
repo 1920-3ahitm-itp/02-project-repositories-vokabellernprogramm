@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Event {
 
-    private Long evtId;
+    private Integer evtId;
 
     //eventType: Art des Events
     private EventType eventType;
@@ -19,7 +19,15 @@ public class Event {
     //words: Die Wörter des Events
     private List<Word> words = new ArrayList<>();
 
-    public Event(Long evtId, Date date, String eventDescription) {
+    public Event() {
+    }
+
+    public Event(Integer evtId, Date date, String eventDescription) {
+        this.evtId = evtId;
+        this.date = date;
+        this.eventDescription = eventDescription;
+    }
+    public Event(int evtId, Date date, String eventDescription) {
         this.evtId = evtId;
         this.date = date;
         this.eventDescription = eventDescription;
@@ -35,12 +43,20 @@ public class Event {
     //Getter und Setter
 
 
-    public Long getId() {
+    public Integer getId() {
         return evtId;
+    }
+
+    public void setEvtId(Integer evtId) {
+        this.evtId = evtId;
     }
 
     public String getEventDescription() {
         return eventDescription;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
     }
 
     public EventType getEventType() {

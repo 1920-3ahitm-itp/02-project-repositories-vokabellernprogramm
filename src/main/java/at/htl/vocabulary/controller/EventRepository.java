@@ -4,6 +4,7 @@ import at.htl.vocabulary.model.Category;
 import at.htl.vocabulary.model.Event;
 
 import javax.sql.DataSource;
+import java.net.Inet4Address;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +89,7 @@ public class EventRepository implements Repository<Event> {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                Long id = result.getLong("EVT_ID");
+                int id = result.getInt("EVT_ID");
                 Date date = result.getDate("EVT_DATE");
                 String description = result.getString("EVT_DESCR");
                 events.add(new Event(id,date,description));
@@ -101,6 +102,24 @@ public class EventRepository implements Repository<Event> {
 
     @Override
     public Event findById(int id) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT evt_id, evt_date, evt_descr FROM event WHERE evt_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                Event selectedEvent = new Event();
+                selectedEvent.setEvtId(id);
+                resultSet.next();
+                Date date = resultSet.getDate("EVT_DATE");
+                String description = resultSet.getString("EVT_DESCR");
+                selectedEvent.setDate(date);
+                selectedEvent.setEventDescription(description);
+                return selectedEvent;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
+
