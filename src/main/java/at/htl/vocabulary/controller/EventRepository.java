@@ -63,7 +63,18 @@ public class EventRepository implements Repository<Event> {
 
     @Override
     public void delete(int id) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM event WHERE evt_id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
 
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Delete from EVENT failed, no rows affected");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
