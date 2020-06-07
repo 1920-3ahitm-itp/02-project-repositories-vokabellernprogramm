@@ -6,16 +6,18 @@ import java.util.List;
 
 public class Event {
 
-    Long id;
+    private Long evtId;
 
     //eventType: Art des Events
-    EventType eventType;
+    private EventType eventType;
 
     //date: Datum wo dieses Event stattfindet zur Unterscheidung
-    Date date;
+    private Date date;
+
+    private String eventDescription;
 
     //words: Die Wörter des Events
-    List<Word> words = new ArrayList<>();
+    private List<Word> words = new ArrayList<>();
 
     public Event(EventType eventType, Date date, List<Word> words) {
         this.eventType = eventType;
@@ -23,7 +25,18 @@ public class Event {
         this.words = words;
     }
 
+
     //Getter und Setter
+
+
+    public Long getId() {
+        return evtId;
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
     public EventType getEventType() {
         return eventType;
     }
