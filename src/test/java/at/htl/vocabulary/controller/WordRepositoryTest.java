@@ -29,7 +29,6 @@ class WordRepositoryTest {
 //  }
 
 
-
   @Test
   void t0010_save(){
 
@@ -38,7 +37,6 @@ class WordRepositoryTest {
     output(table).toConsole();
     repository.save(wrd);
     output(table).toConsole();
-
 
     Assertions.assertThat(table).row(table.getRowsList().size() - 1)
             .value("WRD_ENGLISH").isEqualTo("school");
