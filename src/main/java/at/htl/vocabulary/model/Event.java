@@ -19,6 +19,12 @@ public class Event {
     //words: Die Wörter des Events
     private List<Word> words = new ArrayList<>();
 
+    public Event(Long evtId, Date date, String eventDescription) {
+        this.evtId = evtId;
+        this.date = date;
+        this.eventDescription = eventDescription;
+    }
+
     public Event(EventType eventType, Date date, List<Word> words) {
         this.eventType = eventType;
         this.date = date;

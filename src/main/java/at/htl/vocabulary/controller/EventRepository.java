@@ -5,6 +5,7 @@ import at.htl.vocabulary.model.Event;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventRepository implements Repository<Event> {
@@ -24,7 +25,7 @@ public class EventRepository implements Repository<Event> {
     private int create(Event event) {
         int generatedKey = 0;
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO EVENT (evt_date, Evt_descr) VALUES (?,?)";
+            String sql = "INSERT INTO event (evt_date, evt_descr) VALUES (?,?)";
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setDate(1, (Date) event.getDate());
             statement.setString(2, event.getEventDescription());
@@ -46,7 +47,7 @@ public class EventRepository implements Repository<Event> {
 
     private void update(Event event) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE EVENT SET EVT_DATE=?, EVT_DESCR=? WHERE EVT_ID=?";
+            String sql = "UPDATE event SET evt_date=?, evt_descr=? WHERE evt_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, event.getId());
             statement.setDate(2, (Date) event.getDate());
@@ -79,7 +80,23 @@ public class EventRepository implements Repository<Event> {
 
     @Override
     public List<Event> findAll() {
-        return null;
+        List<Event> events = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT evt_id, evt_date, evt_descr FROM event";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                Long id = result.getLong("EVT_ID");
+                Date date = result.getDate("EVT_DATE");
+                String description = result.getString("EVT_DESCR");
+                events.add(new Event(id,date,description));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return events;
     }
 
     @Override
