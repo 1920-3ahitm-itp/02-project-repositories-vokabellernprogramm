@@ -68,11 +68,11 @@ public class EventRepository implements Repository<Event> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM event WHERE evt_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Delete from EVENT failed, no rows affected");
@@ -93,7 +93,7 @@ public class EventRepository implements Repository<Event> {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                int id = result.getInt("EVT_ID");
+                Long id = result.getLong("EVT_ID");
                // int eventTypeId = result.getInt("EVT_ET_ID");
                 Date date = result.getDate("EVT_DATE");
                 String description = result.getString("EVT_DESCR");
@@ -108,11 +108,11 @@ public class EventRepository implements Repository<Event> {
     }
 
     @Override
-    public Event findById(int id) {
+    public Event findById(Long id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT evt_id, evt_event_type, evt_date, evt_descr FROM event WHERE evt_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 Event selectedEvent = new Event();
                 selectedEvent.setEvtId(id);
