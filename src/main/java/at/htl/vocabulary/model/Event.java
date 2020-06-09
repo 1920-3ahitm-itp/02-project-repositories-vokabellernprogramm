@@ -1,18 +1,19 @@
 package at.htl.vocabulary.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Event {
 
-    private Integer evtId;
+    private int evtId;
 
     //eventType: Art des Events
     private EventType eventType;
 
     //date: Datum wo dieses Event stattfindet zur Unterscheidung
-    private Date date;
+    private LocalDate date;
 
     private String eventDescription;
 
@@ -22,27 +23,20 @@ public class Event {
     public Event() {
     }
 
-    public Event(Integer evtId, Date date, String eventDescription) {
+    public Event(int evtId, EventType eventType, LocalDate date, String eventDescription) {
         this.evtId = evtId;
-        this.date = date;
-        this.eventDescription = eventDescription;
-    }
-    public Event(int evtId, Date date, String eventDescription) {
-        this.evtId = evtId;
-        this.date = date;
-        this.eventDescription = eventDescription;
-    }
-
-    public Event(EventType eventType, Date date, List<Word> words) {
         this.eventType = eventType;
         this.date = date;
-        this.words = words;
+        this.eventDescription = eventDescription;
     }
 
+    public Event(EventType eventType, LocalDate date, String eventDescription) {
+        this.eventType = eventType;
+        this.date = date;
+        this.eventDescription = eventDescription;
+    }
 
     //Getter und Setter
-
-
     public Integer getId() {
         return evtId;
     }
@@ -67,16 +61,15 @@ public class Event {
         this.eventType = eventType;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public List<Word> getWords() {
-        return words;
+    public List<Word> getWords() { return words;
     }
 
     public void setWords(List<Word> words) {
