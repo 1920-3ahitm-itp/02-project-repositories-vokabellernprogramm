@@ -39,11 +39,11 @@ public class WordRepository implements Repository<Word> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM word WHERE wrd_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Delete from WORD failed, no rows affected");
@@ -83,14 +83,14 @@ public class WordRepository implements Repository<Word> {
     }
 
     @Override
-    public Word findById(int id) {
+    public Word findById(Long id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM word WHERE wrd_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 Word selectedWord = new Word();
-                selectedWord.setId(id);
+                selectedWord.setId((long) Math.toIntExact(id));
                 resultSet.next();
                 String germanWrd = resultSet.getString("WRD_GERMAN");
                 String englishWrd = resultSet.getString("WRD_ENGLISH");
@@ -126,7 +126,7 @@ public class WordRepository implements Repository<Word> {
             preparedStatement.setString(1, name);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 resultSet.next();
-                int id = resultSet.getInt(1);
+                Long id = resultSet.getLong(1);
                 String germanWrd = resultSet.getString(2);
                 String englishWrd = resultSet.getString(3);
                 return new Word(id, germanWrd, englishWrd);
