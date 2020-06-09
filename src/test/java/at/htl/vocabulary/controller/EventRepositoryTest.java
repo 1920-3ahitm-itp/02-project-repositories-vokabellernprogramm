@@ -59,7 +59,11 @@ class EventRepositoryTest {
 
     @Test
     void findAll() {
+        int allRows = repository.findAll().size();
+        Table table = new Table(dataSource, "EVENT");
+        int tableRows = table.getRowsList().size();
 
+        org.assertj.core.api.Assertions.assertThat(allRows).isEqualTo(tableRows);
     }
 
     @Test
