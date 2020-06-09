@@ -18,15 +18,15 @@ CREATE TABLE event_type (
     et_id INT CONSTRAINT et_not_null NOT NULL
         GENERATED ALWAYS AS IDENTITY
         CONSTRAINT event_type_pk PRIMARY KEY,
-    et_name VARCHAR(50)
+    et_name VARCHAR(50) CONSTRAINT event_type_name_uq UNIQUE
 );
 
 CREATE TABLE event (
     evt_id INT CONSTRAINT evt_id_not_null NOT NULL
         GENERATED ALWAYS AS IDENTITY
         CONSTRAINT event_pk PRIMARY KEY,
-    evt_et_id INT CONSTRAINT evt_event_type_fk
-        REFERENCES event_type(et_id),
+    evt_event_type VARCHAR(50) CONSTRAINT evt_event_type_fk
+        REFERENCES event_type(et_name),
     evt_date DATE,
     evt_descr VARCHAR(200)
 );
