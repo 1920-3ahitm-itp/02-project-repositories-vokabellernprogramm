@@ -1,9 +1,12 @@
 package at.htl.vocabulary.controller;
 
+import at.htl.vocabulary.database.SqlRunner;
 import at.htl.vocabulary.model.Category;
 import at.htl.vocabulary.model.Word;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
@@ -14,22 +17,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class WordRepositoryTest {
 
-  String TABLE_NAME = "WORD";
-  String TABLE_NAME2 = "EVENT";
   DataSource dataSource = Database.getDataSource();
-  WordRepository repository = new WordRepository();
+  static WordRepository repository;
 
-//  @BeforeEach
-//  void beforeEach() {
-//    repository = new WordRepository();
-//
-//    if (repository.tableExists()) {
-//      repository.dropTable();
-//    }
-//  }
-
+  @BeforeAll
+  static void beforeAll() {
+    SqlRunner.runScript();
+    repository = new WordRepository();
+  }
 
   @Test
+  @Order(1)
   void t0010_save(){
 
     Word wrd = new Word("Schule","school");
@@ -43,25 +41,27 @@ class WordRepositoryTest {
   }
 
   @Test
+  @Order(2)
   void t0020_delete() {
-//    String englishWrd = "School";
-//
-//    Table table = new Table(dataSource, "WORD");
-//    output(table).toConsole();
-//    int expectedRows = table.getRowsList().size() - 1;
-//    repository.deleteByEnglishWrd(englishWrd);
-//
-//    table = new Table(dataSource, "WORD");
-//    output(table).toConsole();
-//    Assertions.assertThat(table).hasNumberOfRows(expectedRows);
-//
-//    if (repository.findByName(englishWrd) != null) {
-//      fail("CATEGORY " + englishWrd + " not deleted from db");
-//    }
+    Word wrd = new Word("Schule","school");
+
+    Table table = new Table(dataSource, "WORD");
+    output(table).toConsole();
+    int expectedRows = table.getRowsList().size() - 1;
+    repository.deleteByEnglishWrd(wrd.getEnglishWord());
+
+    table = new Table(dataSource, "WORD");
+    output(table).toConsole();
+    Assertions.assertThat(table).hasNumberOfRows(expectedRows);
+
+    if (repository.findByName(wrd.getEnglishWord()) != null) {
+      fail("WORD " + wrd.getEnglishWord() + " not deleted from db");
+    }
   }
 
 
   @Test
+  @Order(3)
   void t0030_findAll() {
 
     int allRows = repository.findAll().size();
@@ -72,6 +72,7 @@ class WordRepositoryTest {
   }
 
   @Test
+  @Order(4)
   void t0040_findByName(){
 
     Table table = new Table(dataSource, "WORD");
@@ -90,10 +91,11 @@ class WordRepositoryTest {
 
   }
   @Test
+  @Order(5)
   void t0050_findById(){
     Table table = new Table(dataSource, "WORD");
 
-    Word word = repository.findById(1);
+    Word word = repository.findById(1L);
     output(table).toConsole();
 
     String [] expected = {String.valueOf(word.getId()), word.getGermanWord(), word.getEnglishWord()};
