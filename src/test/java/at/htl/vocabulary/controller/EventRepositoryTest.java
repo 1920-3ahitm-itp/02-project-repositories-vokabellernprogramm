@@ -37,7 +37,8 @@ class EventRepositoryTest {
         repository.save(englishSA2);
 
         // Prüfen mit assertJ, ob der Inhalt in DB ok ist
-
+        Assertions.assertThat(table).row(table.getRowsList().size() - 1)
+                .value("EVT_DESCR").isEqualTo("easy cheesy");
 
     }
 
@@ -49,7 +50,7 @@ class EventRepositoryTest {
         int expectedRows = table.getRowsList().size() - 1;
         output(table).toConsole();
 
-        repository.delete(4);
+        repository.delete(4L);
 
         table = new Table(dataSource, "EVENT");
         output(table).toConsole();
@@ -72,17 +73,17 @@ class EventRepositoryTest {
 
         Table table = new Table(dataSource, "EVENT");
 
-        Event event = repository.findById(1);
+        Event event = repository.findById(2L);
         output(table).toConsole();
 
         String [] expected = {String.valueOf(event.getId()),String.valueOf(event.getEventType()),
                String.valueOf(event.getDate()), event.getEventDescription()};
 
         String [] actual = {
-                table.getRow(0).getValuesList().get(0).getValue().toString(),
-                table.getRow(0).getValuesList().get(1).getValue().toString(),
-                table.getRow(0).getValuesList().get(2).getValue().toString(),
-                table.getRow(0).getValuesList().get(3).getValue().toString()
+                table.getRow(1).getValuesList().get(0).getValue().toString(),
+                table.getRow(1).getValuesList().get(1).getValue().toString(),
+                table.getRow(1).getValuesList().get(2).getValue().toString(),
+                table.getRow(1).getValuesList().get(3).getValue().toString()
         };
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
