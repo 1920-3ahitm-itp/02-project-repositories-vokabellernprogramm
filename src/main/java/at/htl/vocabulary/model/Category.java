@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Category {
 
-    private Integer id;
+    private Long id;
     private String name;
     private List<Word> words = new ArrayList<>();
 
@@ -16,16 +16,16 @@ public class Category {
         this.name = name;
     }
 
-    public Category(int id, String name) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
