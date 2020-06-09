@@ -69,5 +69,23 @@ class EventRepositoryTest {
     @Test
     void findById() {
 
+
+        Table table = new Table(dataSource, "EVENT");
+
+        Event event = repository.findById(1);
+        output(table).toConsole();
+
+        String [] expected = {String.valueOf(event.getId()),String.valueOf(event.getEventType()),
+               String.valueOf(event.getDate()), event.getEventDescription()};
+
+        String [] actual = {
+                table.getRow(0).getValuesList().get(0).getValue().toString(),
+                table.getRow(0).getValuesList().get(1).getValue().toString(),
+                table.getRow(0).getValuesList().get(2).getValue().toString(),
+                table.getRow(0).getValuesList().get(3).getValue().toString()
+        };
+
+        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
+
     }
 }
