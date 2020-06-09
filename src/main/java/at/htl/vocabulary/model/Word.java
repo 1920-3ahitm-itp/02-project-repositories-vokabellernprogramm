@@ -2,7 +2,7 @@ package at.htl.vocabulary.model;
 
 public class Word {
 
-    private Integer id;
+    private Long id;
     private String germanWord = "";
     private String englishWord = "";
     //private Category category = new Category();
@@ -10,24 +10,19 @@ public class Word {
     public Word() {
     }
 
-    public Word(Integer id, String germanWord, String englishWord) {
-        this.id = id;
-        this.germanWord = germanWord;
-        this.englishWord = englishWord;
-    }
-
-    public Word(int id, String germanWord, String englishWord) {
+    public Word(Long id, String germanWord, String englishWord) {
         this.id = id;
         this.germanWord = germanWord;
         this.englishWord = englishWord;
     }
 
     public Word(String germanWord, String englishWord) {
+        this.id = null;
         this.germanWord = germanWord;
         this.englishWord = englishWord;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -39,7 +34,7 @@ public class Word {
         return englishWord;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
