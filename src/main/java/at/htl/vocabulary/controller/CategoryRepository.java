@@ -69,12 +69,12 @@ public class CategoryRepository implements Repository<Category> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM category WHERE cat_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Delete from CATEGORY failed, no rows affected");
@@ -112,14 +112,14 @@ public class CategoryRepository implements Repository<Category> {
     }
 
     @Override
-    public Category findById(int id) {
+    public Category findById(Long id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM category WHERE cat_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 Category selectedCategory = new Category();
-                selectedCategory.setId(id);
+                selectedCategory.setId((long) Math.toIntExact(id));
                 resultSet.next();
                 String name = resultSet.getString("CAT_NAME");
                 selectedCategory.setName(name);
@@ -170,7 +170,7 @@ public class CategoryRepository implements Repository<Category> {
                  * (vgl UNIQUE Constraint in Tabelle CATEGORY)
                  */
                 resultSet.next();
-                int id = resultSet.getInt(1);
+                Long id = resultSet.getLong(1);
                 String catName = resultSet.getString(2);
                 return new Category(id, catName);
             }
