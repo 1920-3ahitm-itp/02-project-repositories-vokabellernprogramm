@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Event {
 
-    private int evtId;
+    private Long evtId;
 
     //eventType: Art des Events
     private EventType eventType;
@@ -23,7 +23,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(int evtId, EventType eventType, LocalDate date, String eventDescription) {
+    public Event(Long evtId, EventType eventType, LocalDate date, String eventDescription) {
         this.evtId = evtId;
         this.eventType = eventType;
         this.date = date;
@@ -31,17 +31,18 @@ public class Event {
     }
 
     public Event(EventType eventType, LocalDate date, String eventDescription) {
+        this.evtId = null;
         this.eventType = eventType;
         this.date = date;
         this.eventDescription = eventDescription;
     }
 
     //Getter und Setter
-    public Integer getId() {
+    public Long getId() {
         return evtId;
     }
 
-    public void setEvtId(Integer evtId) {
+    public void setEvtId(Long evtId) {
         this.evtId = evtId;
     }
 
