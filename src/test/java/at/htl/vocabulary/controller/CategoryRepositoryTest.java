@@ -104,7 +104,7 @@ class CategoryRepositoryTest {
 
         Table table = new Table(dataSource, "CATEGORY");
 
-        Category category = repository.findById(1);
+        Category category = repository.findById(1L);
         output(table).toConsole();
 
         String [] expected = {String.valueOf(category.getId()), category.getName()};
