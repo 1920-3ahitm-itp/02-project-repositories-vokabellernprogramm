@@ -5,9 +5,7 @@ import at.htl.vocabulary.model.Category;
 import at.htl.vocabulary.model.Word;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import javax.sql.DataSource;
 
@@ -15,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.db.output.Outputs.output;
 import static org.junit.jupiter.api.Assertions.fail;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class WordRepositoryTest {
 
   DataSource dataSource = Database.getDataSource();
@@ -34,6 +33,7 @@ class WordRepositoryTest {
     Table table = new Table(dataSource, "WORD");
     output(table).toConsole();
     repository.save(wrd);
+    table = new Table(dataSource, "WORD");
     output(table).toConsole();
 
     Assertions.assertThat(table).row(table.getRowsList().size() - 1)
